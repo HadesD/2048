@@ -12,5 +12,9 @@ build:
 		-o bin/2048 \
 		src/main.cpp
 
+run:
+	cd bin && \
+		./2048
+
 clean:
 	$(RM) bin/*
