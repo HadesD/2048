@@ -10,7 +10,8 @@ default: build
 build:
 	$(CXX) $(LIBS) \
 		-o bin/2048 \
-		src/main.cpp
+		src/main.cpp \
+		src/Game.cpp
 
 run:
 	cd bin && \
