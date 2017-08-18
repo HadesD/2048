@@ -49,6 +49,15 @@ void Game::drawGameBoard()
   }
 }
 
+void Game::update()
+{
+  Kbhit m_kbhit;
+
+  m_key = m_kbhit.getch();
+
+  std::cout << m_key;
+}
+
 int Game::randEven(int max)
 {
   int v = std::rand() % max;
@@ -65,3 +74,7 @@ int Game::randEven(int max)
   return v;
 }
 
+int Game::getKey() const
+{
+  return m_key;
+}

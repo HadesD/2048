@@ -12,7 +12,7 @@ build:
 		-o bin/2048 \
 		src/main.cpp \
 		src/Game.cpp \
-		src/Keyboard.cpp
+		src/Kbhit.cpp
 
 run:
 	cd bin && \

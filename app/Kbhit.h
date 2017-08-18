@@ -1,22 +1,19 @@
 // http://linux-sxs.org/programming/kbhit.html
-
-#ifndef KBHITh
-#define KBHITh
-
+#ifndef KBHIT_h
+#define KBHIT_h
 #include <termios.h>
 
-class Keyboard
+class Kbhit
 {
 	public:
-		Keyboard();
-		~Keyboard();
+		Kbhit();
+		~Kbhit();
 		int kbhit();
 		int getch();
 
 	private:
 		struct termios initial_settings, new_settings;
 		int peek_character;
-
 };
 
 #endif

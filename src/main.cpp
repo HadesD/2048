@@ -12,29 +12,29 @@
 
 #include "app/Game.hpp"
 
-int main(int , char *[])
+int main(int /* argc */, char * /* argv */[])
 {
   assert(MAX_START_COUNT <= (GAMEBOARD_COLS * GAMEBOARD_ROWS));
 
   // Init random
   std::srand(std::time(0));
 
-  std::string key;
-
   std::shared_ptr<Game> g(new Game());
 
   // Init game
   g->initGame();
 
-  // while (true)
+  while (true)
   {
     g->drawGameBoard();
 
-    key = getchar();
-
+    g->update();
     // system("clear");
 
-    std::cout << key;
+    if (g->getKey() == 'q')
+    {
+      break;
+    }
   }
 
   return 0;

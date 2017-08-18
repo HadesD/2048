@@ -1,7 +1,7 @@
-#include "app/Keyboard.h"
+#include "app/Kbhit.h"
 #include <unistd.h> // read()
 
-Keyboard::Keyboard()
+Kbhit::Kbhit()
 {
   tcgetattr(0,&initial_settings);
   new_settings = initial_settings;
@@ -14,12 +14,12 @@ Keyboard::Keyboard()
   peek_character=-1;
 }
 
-Keyboard::~Keyboard()
+Kbhit::~Kbhit()
 {
   tcsetattr(0, TCSANOW, &initial_settings);
 }
 
-int Keyboard::kbhit()
+int Kbhit::kbhit()
 {
   unsigned char ch;
   int nread;
@@ -39,7 +39,7 @@ int Keyboard::kbhit()
   return 0;
 }
 
-int Keyboard::getch()
+int Kbhit::getch()
 {
   char ch;
 
