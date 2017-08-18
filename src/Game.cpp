@@ -64,3 +64,4 @@ int Game::randEven(int max)
 
   return v;
 }
+

@@ -11,7 +11,8 @@ build:
 	$(CXX) $(LIBS) \
 		-o bin/2048 \
 		src/main.cpp \
-		src/Game.cpp
+		src/Game.cpp \
+		src/Keyboard.cpp
 
 run:
 	cd bin && \
