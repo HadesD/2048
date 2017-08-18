@@ -1,13 +1,5 @@
-#ifdef LINUX
-#  include <ncurses.h> // getyx() lncurses - Linux
-#  include <curses.h>
-#elseif (WIN32)
-#  include <Windows.h>
-#endif
-
-#include <memory>
-
 #include <cassert>
+#include <memory>
 #include <ctime>
 
 #include "app/Game.hpp"

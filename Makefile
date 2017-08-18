@@ -1,7 +1,7 @@
 CXX=g++ -std=c++1z -g -I.
 RM=rm -rf
 
-LIBS=$(pkg-config --libs ncurses)
+LIBS=$(pkg-config --libs)
 
 default: build
 
