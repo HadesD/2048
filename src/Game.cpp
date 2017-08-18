@@ -42,7 +42,14 @@ void Game::drawGameBoard()
     std::cout << std::string(m_gameBoard.at(x).size(), '=') << std::endl;
     for (size_t y = 0; y < m_gameBoard.at(x).size(); y++)
     {
-      std::cout << m_gameBoard.at(x).at(y);
+      if (m_gameBoard.at(x).at(y) == 0)
+      {
+        std::cout << " ";
+      }
+      else
+      {
+        std::cout << m_gameBoard.at(x).at(y);
+      }
       std::cout << " ";
     }
     std::cout << std::endl;
@@ -55,7 +62,39 @@ void Game::update()
 
   m_key = m_kbhit.getch();
 
-  std::cout << m_key;
+  this->onKeyboardHit();
+}
+
+void Game::onKeyboardHit()
+{
+  switch (m_key)
+  {
+    case 'a':
+    case 'h':
+      {
+
+      }
+      break;
+    case 's':
+    case 'j':
+      {
+
+      }
+      break;
+    case 'w':
+    case 'k':
+      {
+
+      }
+      break;
+    case 'd':
+    case 'l':
+      {
+
+      }
+      break;
+  }
+  std::cout << "Pushed: " << (static_cast<char>(m_key)) << std::endl;
 }
 
 int Game::randEven(int max)
@@ -78,3 +117,9 @@ int Game::getKey() const
 {
   return m_key;
 }
+
+int Game::getPoint() const
+{
+  return m_point;
+}
+

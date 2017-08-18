@@ -23,10 +23,12 @@ class Game
 
   public:
     int getKey() const;
+    int getPoint() const;
 
   public:
     std::vector< std::vector< int > > m_gameBoard;
     int m_key;
+    int m_point;
 };
 
 #endif

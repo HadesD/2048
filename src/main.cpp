@@ -33,7 +33,13 @@ int main(int /* argc */, char * /* argv */[])
 
     if (g->getKey() == 'q')
     {
-      break;
+      std::cout << "Do you want to exit game? [y/n] ";
+      std::string ans;
+      std::cin >> ans;
+      if (ans == "y")
+      {
+        break;
+      }
     }
   }
 
