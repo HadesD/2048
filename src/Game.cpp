@@ -2,14 +2,8 @@
 
 Game::Game()
 {
-}
+  m_point = 0;
 
-Game::~Game()
-{
-}
-
-void Game::initGame()
-{
   m_gameBoard.reserve(GAMEBOARD_ROWS);
 
   for (int x = 0; x < GAMEBOARD_ROWS; x++)
@@ -33,6 +27,10 @@ void Game::initGame()
 
     m_gameBoard[x][y] = randEven(4);
   }
+}
+
+Game::~Game()
+{
 }
 
 void Game::drawGameBoard()

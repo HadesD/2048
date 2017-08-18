@@ -21,9 +21,6 @@ int main(int /* argc */, char * /* argv */[])
 
   std::shared_ptr<Game> g(new Game());
 
-  // Init game
-  g->initGame();
-
   while (true)
   {
     g->drawGameBoard();
@@ -33,9 +30,16 @@ int main(int /* argc */, char * /* argv */[])
 
     if (g->getKey() == 'q')
     {
-      std::cout << "Do you want to exit game? [y/n] ";
       std::string ans;
-      std::cin >> ans;
+      std::cout << "Do you want to exit game? [y/n] ";
+      while(std::cin >> ans)
+      {
+        std::cout << "[y/n]: ";
+        if ((ans == "y") || (ans == "n"))
+        {
+          break;
+        }
+      }
       if (ans == "y")
       {
         break;

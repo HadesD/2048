@@ -13,7 +13,6 @@ class Game
     ~Game();
 
   public:
-    void initGame();
     void drawGameBoard();
     void update();
     int randEven(int max);
