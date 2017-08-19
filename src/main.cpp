@@ -26,11 +26,12 @@ int main(int /* argc */, char * /* argv */[])
       std::cout << "Do you want to exit game? [y/n] ";
       while(std::cin >> ans)
       {
-        std::cout << "[y/n]: ";
         if ((ans == "y") || (ans == "n"))
         {
+          std::cout << "Exit game" << std::endl;
           break;
         }
+        std::cout << "[y/n]: ";
       }
       if (ans == "y")
       {

@@ -4,7 +4,6 @@
 #include <vector>
 
 #include "app/Config.hpp"
-#include "app/Kbhit.h"
 
 class Game
 {
@@ -15,12 +14,9 @@ class Game
   public:
     void drawGameBoard();
     void update();
-    int randEven(int max);
 
   public:
-    void onKeyboardHit();
-
-  public:
+    void setKey(int key);
     int getKey() const;
     int getPoint() const;
 

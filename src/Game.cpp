@@ -1,4 +1,6 @@
 #include "app/Game.hpp"
+#include "app/KeyPushManager.hpp"
+#include "app/Utils.hpp"
 
 Game::Game()
 {
@@ -25,7 +27,7 @@ Game::Game()
     int x = std::rand() % GAMEBOARD_ROWS;
     int y = std::rand() % GAMEBOARD_COLS;
 
-    m_gameBoard[x][y] = randEven(4);
+    m_gameBoard[x][y] = Utils::randEven(4);
   }
 }
 
@@ -56,59 +58,13 @@ void Game::drawGameBoard()
 
 void Game::update()
 {
-  Kbhit m_kbhit;
-
-  m_key = m_kbhit.getch();
-
-  this->onKeyboardHit();
+  KeyPushManager key(*(this));
+  key.waitKeyPush();
 }
 
-void Game::onKeyboardHit()
+void Game::setKey(int key)
 {
-  switch (m_key)
-  {
-    case 'a':
-    case 'h':
-      {
-
-      }
-      break;
-    case 's':
-    case 'j':
-      {
-
-      }
-      break;
-    case 'w':
-    case 'k':
-      {
-
-      }
-      break;
-    case 'd':
-    case 'l':
-      {
-
-      }
-      break;
-  }
-  std::cout << "Pushed: " << (static_cast<char>(m_key)) << std::endl;
-}
-
-int Game::randEven(int max)
-{
-  int v = std::rand() % max;
-
-  if (v == 0)
-  {
-    v = 2;
-  }
-  else if ((v % 2) != 0)
-  {
-    v++;
-  }
-
-  return v;
+  m_key = key;
 }
 
 int Game::getKey() const
