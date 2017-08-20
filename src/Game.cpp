@@ -51,6 +51,7 @@ void Game::drawHBarrier(int zeroSpaceLen)
 
 void Game::drawGameBoard()
 {
+  std::cout << "<2048 version console> :: Dark.Hades" << std::endl;
   int zeroSpaceLen = 5;
   for (size_t x = 0; x < m_gameBoard.size(); x++)
   {
