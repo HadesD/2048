@@ -21,18 +21,18 @@ Game::Game()
 
     m_gameBoard.emplace_back(vX);
   }
-
-  for (int c = 0; c < MAX_START_COUNT; c++)
-  {
-    int x = std::rand() % GAMEBOARD_ROWS;
-    int y = std::rand() % GAMEBOARD_COLS;
-
-    m_gameBoard[x][y] = Utils::randEven(4);
-  }
 }
 
 Game::~Game()
 {
+}
+
+void Game::init()
+{
+  for (int c = 0; c < MAX_START_COUNT; c++)
+  {
+    this->fillRandPos(m_gameBoard);
+  }
 }
 
 void Game::drawGameBoard()
@@ -61,6 +61,21 @@ void Game::update()
 {
   KeyPushManager key(*(this));
   key.waitKeyPush();
+}
+
+void Game::fillRandPos(Game::GameBoard &gb)
+{
+  while(true)
+  {
+    int x = std::rand() % gb.size();
+    int y = std::rand() % gb.at(x).size();
+
+    if (gb.at(x).at(y) == 0)
+    {
+      gb[x][y] = Utils::randEven(4);
+      break;
+    }
+  }
 }
 
 void Game::setKey(int key)

@@ -24,6 +24,7 @@ class KeyPushManager
     Game &game;
     Game::GameBoard gb;
     int m_key;
+    bool m_isGameBoardMoved;
 };
 
 #endif

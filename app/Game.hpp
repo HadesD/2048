@@ -14,8 +14,10 @@ class Game
     ~Game();
 
   public:
+    void init();
     void drawGameBoard();
     void update();
+    void fillRandPos(GameBoard &gb);
 
   public:
     void setKey(int key);

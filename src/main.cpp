@@ -13,6 +13,8 @@ int main(int /* argc */, char * /* argv */[])
 
   std::shared_ptr<Game> g(new Game());
 
+  g->init();
+
   while (true)
   {
     g->drawGameBoard();

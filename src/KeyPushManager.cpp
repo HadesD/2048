@@ -16,6 +16,7 @@ void KeyPushManager::waitKeyPush()
 
 void KeyPushManager::onKeyboardHit()
 {
+  m_isGameBoardMoved = false;
   switch (m_key)
   {
     case 'a':
@@ -43,6 +44,10 @@ void KeyPushManager::onKeyboardHit()
       }
       break;
   }
+  if (m_isGameBoardMoved)
+  {
+    game.fillRandPos(gb);
+  }
   game.setGameBoard(gb);
   std::cout << "Pushed: " << (static_cast<char>(m_key)) << std::endl;
 }
@@ -55,17 +60,22 @@ void KeyPushManager::moveUp()
     {
       for (size_t y = 0; y < gb.at(x).size(); y++)
       {
-        if (
-          (gb.at(x - 1).at(y) == 0) ||
-          (gb.at(x - 1).at(y) == gb.at(x).at(y))
-          )
+        if (gb.at(x).at(y) != 0)
         {
-          if (gb.at(x - 1).at(y) != 0)
+
+          if (
+            (gb.at(x - 1).at(y) == 0) ||
+            (gb.at(x - 1).at(y) == gb.at(x).at(y))
+            )
           {
-            game.setPoint(game.getPoint() + gb.at(x).at(y));
+            if (gb.at(x - 1).at(y) != 0)
+            {
+              game.setPoint(game.getPoint() + gb.at(x).at(y));
+            }
+            gb[x - 1][y] += gb[x][y];
+            gb[x][y] = 0;
+            m_isGameBoardMoved = true;
           }
-          gb[x - 1][y] += gb[x][y];
-          gb[x][y] = 0;
         }
       }
     }
@@ -80,17 +90,21 @@ void KeyPushManager::moveDown()
     {
       for (size_t y = 0; y < gb.at(x).size(); y++)
       {
-        if (
-          (gb.at(x + 1).at(y) == 0) ||
-          (gb.at(x + 1).at(y) == gb.at(x).at(y))
-          )
+        if (gb.at(x).at(y) != 0)
         {
-          if (gb.at(x + 1).at(y) != 0)
+          if (
+            (gb.at(x + 1).at(y) == 0) ||
+            (gb.at(x + 1).at(y) == gb.at(x).at(y))
+            )
           {
-            game.setPoint(game.getPoint() + gb.at(x).at(y));
+            if (gb.at(x + 1).at(y) != 0)
+            {
+              game.setPoint(game.getPoint() + gb.at(x).at(y));
+            }
+            gb[x + 1][y] += gb[x][y];
+            gb[x][y] = 0;
+            m_isGameBoardMoved = true;
           }
-          gb[x + 1][y] += gb[x][y];
-          gb[x][y] = 0;
         }
       }
     }
@@ -105,17 +119,21 @@ void KeyPushManager::moveLeft()
     {
       for (size_t y = gb.at(x).size() - 1; y > 0; y--)
       {
-        if (
-          (gb.at(x).at(y - 1) == 0) ||
-          (gb.at(x).at(y - 1) == gb.at(x).at(y))
-          )
+        if (gb.at(x).at(y) != 0)
         {
-          if (gb.at(x).at(y - 1) != 0)
+          if (
+            (gb.at(x).at(y - 1) == 0) ||
+            (gb.at(x).at(y - 1) == gb.at(x).at(y))
+            )
           {
-            game.setPoint(game.getPoint() + gb.at(x).at(y));
+            if (gb.at(x).at(y - 1) != 0)
+            {
+              game.setPoint(game.getPoint() + gb.at(x).at(y));
+            }
+            gb[x][y - 1] += gb[x][y];
+            gb[x][y] = 0;
+            m_isGameBoardMoved = true;
           }
-          gb[x][y - 1] += gb[x][y];
-          gb[x][y] = 0;
         }
       }
     }
@@ -130,19 +148,24 @@ void KeyPushManager::moveRight()
     {
       for (size_t y = 0; y < gb.at(x).size() - 1; y++)
       {
-        if (
-          (gb.at(x).at(y + 1) == 0) ||
-          (gb.at(x).at(y + 1) == gb.at(x).at(y))
-          )
+        if (gb.at(x).at(y) != 0)
         {
-          if (gb.at(x).at(y + 1) != 0)
+          if (
+            (gb.at(x).at(y + 1) == 0) ||
+            (gb.at(x).at(y + 1) == gb.at(x).at(y))
+            )
           {
-            game.setPoint(game.getPoint() + gb.at(x).at(y));
+            if (gb.at(x).at(y + 1) != 0)
+            {
+              game.setPoint(game.getPoint() + gb.at(x).at(y));
+            }
+            gb[x][y + 1] += gb[x][y];
+            gb[x][y] = 0;
+            m_isGameBoardMoved = true;
           }
-          gb[x][y + 1] += gb[x][y];
-          gb[x][y] = 0;
         }
       }
     }
   }
 }
+
