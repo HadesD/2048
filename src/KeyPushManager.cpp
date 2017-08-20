@@ -51,15 +51,19 @@ void KeyPushManager::moveUp()
 {
   for (size_t i = 0; i < gb.size(); i++)
   {
-    for (size_t y = 0; y < gb.at(0).size(); y++)
+    for (size_t x = gb.size() - 1; x > 0; x--)
     {
-      for (size_t x = gb.size() - 1; x > 0; x--)
+      for (size_t y = 0; y < gb.at(x).size(); y++)
       {
         if (
           (gb.at(x - 1).at(y) == 0) ||
           (gb.at(x - 1).at(y) == gb.at(x).at(y))
           )
         {
+          if (gb.at(x - 1).at(y) != 0)
+          {
+            game.setPoint(game.getPoint() + gb.at(x).at(y));
+          }
           gb[x - 1][y] += gb[x][y];
           gb[x][y] = 0;
         }
@@ -72,15 +76,19 @@ void KeyPushManager::moveDown()
 {
   for (size_t i = 0; i < gb.size(); i++)
   {
-    for (size_t y = 0; y < gb.at(gb.size() - 1).size(); y++)
+    for (size_t x = 0; x < gb.size() - 1; x++)
     {
-      for (size_t x = 0; x < gb.size() - 1; x++)
+      for (size_t y = 0; y < gb.at(x).size(); y++)
       {
         if (
           (gb.at(x + 1).at(y) == 0) ||
           (gb.at(x + 1).at(y) == gb.at(x).at(y))
           )
         {
+          if (gb.at(x + 1).at(y) != 0)
+          {
+            game.setPoint(game.getPoint() + gb.at(x).at(y));
+          }
           gb[x + 1][y] += gb[x][y];
           gb[x][y] = 0;
         }
@@ -91,8 +99,50 @@ void KeyPushManager::moveDown()
 
 void KeyPushManager::moveLeft()
 {
+  for (size_t i = 0; i < gb.size(); i++)
+  {
+    for (size_t x = 0; x < gb.size(); x++)
+    {
+      for (size_t y = gb.at(x).size() - 1; y > 0; y--)
+      {
+        if (
+          (gb.at(x).at(y - 1) == 0) ||
+          (gb.at(x).at(y - 1) == gb.at(x).at(y))
+          )
+        {
+          if (gb.at(x).at(y - 1) != 0)
+          {
+            game.setPoint(game.getPoint() + gb.at(x).at(y));
+          }
+          gb[x][y - 1] += gb[x][y];
+          gb[x][y] = 0;
+        }
+      }
+    }
+  }
 }
 
 void KeyPushManager::moveRight()
 {
+  for (size_t i = 0; i < gb.size(); i++)
+  {
+    for (size_t x = 0; x < gb.size(); x++)
+    {
+      for (size_t y = 0; y < gb.at(x).size() - 1; y++)
+      {
+        if (
+          (gb.at(x).at(y + 1) == 0) ||
+          (gb.at(x).at(y + 1) == gb.at(x).at(y))
+          )
+        {
+          if (gb.at(x).at(y + 1) != 0)
+          {
+            game.setPoint(game.getPoint() + gb.at(x).at(y));
+          }
+          gb[x][y + 1] += gb[x][y];
+          gb[x][y] = 0;
+        }
+      }
+    }
+  }
 }

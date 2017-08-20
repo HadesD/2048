@@ -54,6 +54,7 @@ void Game::drawGameBoard()
     }
     std::cout << std::endl;
   }
+  std::cout << "Point: " << m_point << std::endl;
 }
 
 void Game::update()
