@@ -72,8 +72,22 @@ int Game::getKey() const
   return m_key;
 }
 
+void Game::setPoint(int point)
+{
+  m_point = point;
+}
+
 int Game::getPoint() const
 {
   return m_point;
 }
 
+Game::GameBoard Game::getGameBoard() const
+{
+  return m_gameBoard;
+}
+
+void Game::setGameBoard(Game::GameBoard gb)
+{
+  m_gameBoard = gb;
+}

@@ -8,6 +8,8 @@
 class Game
 {
   public:
+    typedef std::vector< std::vector< int > > GameBoard;
+  public:
     Game();
     ~Game();
 
@@ -18,10 +20,13 @@ class Game
   public:
     void setKey(int key);
     int getKey() const;
+    void setPoint(int point);
     int getPoint() const;
+    void setGameBoard(GameBoard gb);
+    GameBoard getGameBoard() const;
 
   public:
-    std::vector< std::vector< int > > m_gameBoard;
+    GameBoard m_gameBoard;
     int m_key;
     int m_point;
 };
