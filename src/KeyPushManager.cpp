@@ -1,8 +1,8 @@
 #include "app/KeyPushManager.hpp"
-#include "app/Game.hpp"
 
 KeyPushManager::KeyPushManager(Game &game) : game(game)
 {
+  gb = game.getGameBoard();
 }
 
 void KeyPushManager::waitKeyPush()
@@ -43,35 +43,50 @@ void KeyPushManager::onKeyboardHit()
       }
       break;
   }
+  game.setGameBoard(gb);
   std::cout << "Pushed: " << (static_cast<char>(m_key)) << std::endl;
 }
 
 void KeyPushManager::moveUp()
 {
-  Game::GameBoard gb = game.getGameBoard();
-  std::cout << std::endl;
-
-  for (size_t y = 0; y < gb.at(0).size(); y++)
+  for (size_t i = 0; i < gb.size(); i++)
   {
-    for (size_t x = gb.size() - 1; x > 0; x--)
+    for (size_t y = 0; y < gb.at(0).size(); y++)
     {
-      std::cout << gb.at(x).at(y) << " ";
-      if (
-        (gb.at(x - 1).at(y) == 0) ||
-        (gb.at(x - 1).at(y) == gb.at(x).at(y))
-        )
+      for (size_t x = gb.size() - 1; x > 0; x--)
       {
-        gb[x - 1][y] += gb[x][y];
-        gb[x][y] = 0;
+        if (
+          (gb.at(x - 1).at(y) == 0) ||
+          (gb.at(x - 1).at(y) == gb.at(x).at(y))
+          )
+        {
+          gb[x - 1][y] += gb[x][y];
+          gb[x][y] = 0;
+        }
       }
-      game.setGameBoard(gb);
     }
-    std::cout << std::endl;
   }
 }
 
 void KeyPushManager::moveDown()
 {
+  for (size_t i = 0; i < gb.size(); i++)
+  {
+    for (size_t y = 0; y < gb.at(gb.size() - 1).size(); y++)
+    {
+      for (size_t x = 0; x < gb.size() - 1; x++)
+      {
+        if (
+          (gb.at(x + 1).at(y) == 0) ||
+          (gb.at(x + 1).at(y) == gb.at(x).at(y))
+          )
+        {
+          gb[x + 1][y] += gb[x][y];
+          gb[x][y] = 0;
+        }
+      }
+    }
+  }
 }
 
 void KeyPushManager::moveLeft()

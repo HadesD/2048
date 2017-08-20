@@ -42,11 +42,11 @@ void Game::drawGameBoard()
     std::cout << std::string(m_gameBoard.at(x).size(), '=') << std::endl;
     for (size_t y = 0; y < m_gameBoard.at(x).size(); y++)
     {
-      if (m_gameBoard.at(x).at(y) == 0)
+      // if (m_gameBoard.at(x).at(y) == 0)
       {
-        std::cout << " ";
+        // std::cout << " ";
       }
-      else
+      // else
       {
         std::cout << m_gameBoard.at(x).at(y);
       }

@@ -1,6 +1,7 @@
 #ifndef APP_KEY_PUSH_MANAGER_HPP
 #define APP_KEY_PUSH_MANAGER_HPP
 #include "app/Kbhit.h"
+#include "app/Game.hpp"
 
 class Game;
 
@@ -21,6 +22,7 @@ class KeyPushManager
 
   private:
     Game &game;
+    Game::GameBoard gb;
     int m_key;
 };
 
