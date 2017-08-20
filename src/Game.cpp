@@ -1,3 +1,5 @@
+#include <iterator>
+#include <algorithm> // std::find
 #include "app/Game.hpp"
 #include "app/KeyPushManager.hpp"
 #include "app/Utils.hpp"
@@ -5,6 +7,7 @@
 Game::Game()
 {
   m_point = 0;
+  m_isFinish = false;
 
   m_gameBoard.reserve(GAMEBOARD_ROWS);
 
@@ -79,6 +82,41 @@ void Game::update()
   key.waitKeyPush();
 }
 
+void Game::checkFinish()
+{
+  for (size_t x = 0; x < m_gameBoard.size(); x++)
+  {
+    auto it = std::find(std::begin(m_gameBoard.at(x)), std::end(m_gameBoard.at(x)), 0);
+    if (it != std::end(m_gameBoard.at(x)))
+    {
+      return;
+    }
+  }
+
+  for (size_t x = 0; x < m_gameBoard.size(); x++)
+  {
+    for (size_t y = 0; y < m_gameBoard.at(x).size(); y++)
+    {
+      if (x < m_gameBoard.size() - 1)
+      {
+        if (m_gameBoard.at(x).at(y) == m_gameBoard.at(x + 1).at(y))
+        {
+          return;
+        }
+      }
+
+      if (y < m_gameBoard.at(x).size() - 1)
+      {
+        if (m_gameBoard.at(x).at(y + 1) == m_gameBoard.at(x).at(y))
+        {
+          return;
+        }
+      }
+    }
+  }
+  m_isFinish = true;
+}
+
 void Game::fillRandPos(Game::GameBoard &gb)
 {
   while(true)
@@ -122,4 +160,9 @@ Game::GameBoard Game::getGameBoard() const
 void Game::setGameBoard(Game::GameBoard gb)
 {
   m_gameBoard = gb;
+}
+
+bool Game::isFinish() const
+{
+  return m_isFinish;
 }

@@ -49,7 +49,7 @@ void KeyPushManager::onKeyboardHit()
     game.fillRandPos(gb);
   }
   game.setGameBoard(gb);
-  std::cout << "Pushed: " << (static_cast<char>(m_key)) << std::endl;
+  game.checkFinish();
 }
 
 void KeyPushManager::moveUp()

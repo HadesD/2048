@@ -19,6 +19,7 @@ class Game
     void drawGameBoard();
     void update();
     void fillRandPos(GameBoard &gb);
+    void checkFinish();
 
   public:
     void setKey(int key);
@@ -27,11 +28,14 @@ class Game
     int getPoint() const;
     void setGameBoard(GameBoard gb);
     GameBoard getGameBoard() const;
+    bool isFinish() const;
+
 
   public:
     GameBoard m_gameBoard;
     int m_key;
     int m_point;
+    bool m_isFinish;
 };
 
 #endif

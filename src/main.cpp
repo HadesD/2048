@@ -17,14 +17,21 @@ int main(int /* argc */, char * /* argv */[])
 
   while (true)
   {
-    g->drawGameBoard();
-
-    g->update();
 #ifdef _WIN32
     system("cls");
 #elif __linux__
     system("clear");
 #endif
+
+    g->drawGameBoard();
+
+    if (g->isFinish())
+    {
+      std::cout << "Game Finished!" << std::endl;
+      break;
+    }
+
+    g->update();
 
     if (g->getKey() == 'q')
     {
