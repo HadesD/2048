@@ -59,15 +59,60 @@ void Game::drawGameBoard()
     std::cout << "|";
     for (size_t y = 0; y < m_gameBoard.at(x).size(); y++)
     {
+      int curValue = m_gameBoard.at(x).at(y);
       int len = std::to_string(m_gameBoard.at(x).at(y)).size();
       std::cout << std::string(zeroSpaceLen - len, ' ');
-      if (m_gameBoard.at(x).at(y) == 0)
+      if (curValue == 0)
       {
         std::cout << " ";
       }
       else
       {
-        std::cout << m_gameBoard.at(x).at(y);
+        switch (curValue)
+        {
+          case 2:
+            {
+              std::cout << "\e[38;5;196m";
+            }
+            break;
+          case 4:
+            {
+              std::cout << "\e[38;5;27m";
+            }
+            break;
+          case 8:
+            {
+              std::cout << "\e[38;5;58m";
+            }
+            break;
+          case 16:
+            {
+              std::cout << "\e[38;5;93m";
+            }
+            break;
+           case 32:
+            {
+              std::cout << "\e[38;5;129m";
+            }
+            break;
+           case 64:
+            {
+              std::cout << "\e[38;5;237m";
+            }
+            break;
+           case 128:
+            {
+              std::cout << "\e[38;5;201m";
+            }
+            break;
+           case 256:
+            {
+              std::cout << "\e[38;5;172m";
+            }
+            break;
+        }
+        std::cout << curValue;
+        std::cout << "\e[0m";
       }
       std::cout << "|";
     }

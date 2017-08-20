@@ -1,0 +1,1 @@
+/home/darkhades/.vim/.ycm_extra_conf.py
