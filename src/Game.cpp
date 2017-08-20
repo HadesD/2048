@@ -35,25 +35,41 @@ void Game::init()
   }
 }
 
+void Game::drawHBarrier(int zeroSpaceLen)
+{
+  std::cout << "+";
+  for (int i = 0; i < GAMEBOARD_COLS; i++)
+  {
+    std::cout << std::string(zeroSpaceLen, '-');
+    std::cout << "+";
+  }
+  std::cout << std::endl;
+}
+
 void Game::drawGameBoard()
 {
+  int zeroSpaceLen = 5;
   for (size_t x = 0; x < m_gameBoard.size(); x++)
   {
-    std::cout << std::string(m_gameBoard.at(x).size(), '=') << std::endl;
+    this->drawHBarrier(zeroSpaceLen);
+    std::cout << "|";
     for (size_t y = 0; y < m_gameBoard.at(x).size(); y++)
     {
-      // if (m_gameBoard.at(x).at(y) == 0)
+      int len = std::to_string(m_gameBoard.at(x).at(y)).size();
+      std::cout << std::string(zeroSpaceLen - len, ' ');
+      if (m_gameBoard.at(x).at(y) == 0)
       {
-        // std::cout << " ";
+        std::cout << " ";
       }
-      // else
+      else
       {
         std::cout << m_gameBoard.at(x).at(y);
       }
-      std::cout << " ";
+      std::cout << "|";
     }
     std::cout << std::endl;
   }
+  this->drawHBarrier(zeroSpaceLen);
   std::cout << "Point: " << m_point << std::endl;
 }
 

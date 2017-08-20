@@ -20,7 +20,11 @@ int main(int /* argc */, char * /* argv */[])
     g->drawGameBoard();
 
     g->update();
-    // system("clear");
+#ifdef _WIN32
+    system("cls");
+#elif __linux__
+    system("clear");
+#endif
 
     if (g->getKey() == 'q')
     {
@@ -30,13 +34,13 @@ int main(int /* argc */, char * /* argv */[])
       {
         if ((ans == "y") || (ans == "n"))
         {
-          std::cout << "Exit game" << std::endl;
           break;
         }
         std::cout << "[y/n]: ";
       }
       if (ans == "y")
       {
+        std::cout << "Exit game" << std::endl;
         break;
       }
     }

@@ -15,6 +15,7 @@ class Game
 
   public:
     void init();
+    void drawHBarrier(int zeroSpaceLen);
     void drawGameBoard();
     void update();
     void fillRandPos(GameBoard &gb);
