@@ -18,7 +18,7 @@ class KeyPushManager
     void moveLeft();
     void moveRight();
 
-  private:
+  protected:
     Game &game;
     Game::GameBoard gb;
     int m_key;

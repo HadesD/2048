@@ -31,7 +31,7 @@ class Game
     bool isFinish() const;
 
 
-  public:
+  protected:
     GameBoard m_gameBoard;
     int m_key;
     int m_point;
