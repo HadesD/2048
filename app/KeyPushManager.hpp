@@ -3,8 +3,6 @@
 #include "app/Kbhit.h"
 #include "app/Game.hpp"
 
-class Game;
-
 class KeyPushManager
 {
   public:
